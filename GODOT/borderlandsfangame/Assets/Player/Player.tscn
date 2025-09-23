@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg1ffshikmiar"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_hpgvv"]
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="2_388ri"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ev4y5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_276rt"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_hpgvv")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ev4y5")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_276rt")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.978035, 0.208441, 0, -0.208441, 0.978035, 0, 0.652655, -0.14378)
+script = ExtResource("2_388ri")
+
+[node name="RayCast" type="RayCast3D" parent="Camera"]
+target_position = Vector3(0, 0, -10)
+debug_shape_custom_color = Color(1, 0, 0, 1)

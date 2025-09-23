@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bya843qmjq63i"]
+
+[ext_resource type="PackedScene" uid="uid://ceqrm7ehkde6m" path="res://Assets/Import/Environment/Barrels/Radiation_Barrel.glb" id="1_7ftef"]
+
+[node name="Radiation_Barrel" instance=ExtResource("1_7ftef")]

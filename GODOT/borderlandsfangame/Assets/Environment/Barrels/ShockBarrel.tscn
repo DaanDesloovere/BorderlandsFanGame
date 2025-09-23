@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://nhsqglsto574"]
+
+[ext_resource type="PackedScene" uid="uid://cukyab341fck4" path="res://Assets/Import/Environment/Barrels/Shock_Barrel.glb" id="1_jy0pi"]
+
+[node name="Shock_Barrel" instance=ExtResource("1_jy0pi")]

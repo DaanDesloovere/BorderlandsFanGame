@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b483bbvi6x8bu"]
+
+[ext_resource type="PackedScene" uid="uid://brkm4sqvqabbf" path="res://Assets/Import/Environment/Barrels/Fire_Barrel.glb" id="1_dev6w"]
+
+[node name="Fire_Barrel" instance=ExtResource("1_dev6w")]
