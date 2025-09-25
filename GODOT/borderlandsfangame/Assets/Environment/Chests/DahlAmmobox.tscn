@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://cjlrhmrqcjscq"]
+
+[ext_resource type="PackedScene" uid="uid://bv11lnycky7bl" path="res://Assets/Import/Environment/Ammoboxes/Dahl Ammobox.glb" id="1_rjep3"]
+[ext_resource type="Script" path="res://Scripts/DahlAmmobox.gd" id="2_occyt"]
+[ext_resource type="PackedScene" uid="uid://dotn4nba1o3kl" path="res://Assets/Consumables/AssaultRifleAmmo.tscn" id="3_jg536"]
+[ext_resource type="PackedScene" uid="uid://tpjx8ubt16rg" path="res://Assets/Consumables/LauncherAmmo.tscn" id="4_ec8xi"]
+[ext_resource type="PackedScene" uid="uid://calntqh2751cf" path="res://Assets/Consumables/PistolAmmo.tscn" id="5_87nvq"]
+[ext_resource type="PackedScene" uid="uid://c7mij73q0fgom" path="res://Assets/Consumables/ShotGunAmmo.tscn" id="6_r674s"]
+[ext_resource type="PackedScene" uid="uid://dkknen50k74vy" path="res://Assets/Consumables/SniperRifleAmmo.tscn" id="7_6g4jw"]
+[ext_resource type="PackedScene" uid="uid://dbbfcpei8gi5r" path="res://Assets/Consumables/SubMachineGun.tscn" id="8_s1mc8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2kqeq"]
+size = Vector3(1.48334, 0.813721, 2.00067)
+
+[node name="DahlAmmobox" instance=ExtResource("1_rjep3")]
+
+[node name="Ammobox Lid" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73636, 0.350174, 0)
+
+[node name="Body" type="StaticBody3D" parent="." index="2"]
+script = ExtResource("2_occyt")
+AmmoList = [ExtResource("3_jg536"), ExtResource("4_ec8xi"), ExtResource("5_87nvq"), ExtResource("6_r674s"), ExtResource("7_6g4jw"), ExtResource("8_s1mc8")]
+
+[node name="Collision" type="CollisionShape3D" parent="Body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015564, 0.0594482, 0.000335693)
+shape = SubResource("BoxShape3D_2kqeq")
+
+[node name="Places" type="Node3D" parent="." index="3"]
+
+[node name="1" type="Node3D" parent="Places" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.201189, 0.188709, 0.607985)
+
+[node name="2" type="Node3D" parent="Places" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.353287, 0.188709, 0.607985)
+
+[node name="3" type="Node3D" parent="Places" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.353287, 0.188709, 0.00953507)
+
+[node name="4" type="Node3D" parent="Places" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.196486, 0.188709, 0.00953507)
+
+[node name="5" type="Node3D" parent="Places" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.196486, 0.188709, -0.555425)
+
+[node name="6" type="Node3D" parent="Places" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.362399, 0.188709, -0.555425)

@@ -14,17 +14,15 @@ func GenerateGun():
 	# random parts gathered and assembled and instantiated as 1 gun
 	var bodyInstance = GetRandomPart(BodyParts)
 	var barrelInstance = GetRandomPart(BarrelParts)
-	var stockInstance = GetRandomPart(StockParts)
-	var gripInstance = GetRandomPart(GripParts)
 	
-	if (bodyInstance == null || barrelInstance == null 
-		|| stockInstance == null || gripInstance == null):
+	if (bodyInstance == null || barrelInstance == null ):
 		return
+	
+	barrelInstance.position = bodyInstance.get_node("BarrelPlace").position
+	bodyInstance.add_child(barrelInstance)
 	
 	gun.add_child(bodyInstance)
 	gun.add_child(barrelInstance)
-	gun.add_child(stockInstance)
-	gun.add_child(gripInstance)
 	
 	add_child(gun)
 

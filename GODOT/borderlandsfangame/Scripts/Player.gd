@@ -1,13 +1,23 @@
 extends CharacterBody3D
 
-@onready var ray = $Camera/RayCast
-
 const SPEED : float = 5.0
 const JUMP_VELOCITY : float = 4.5
-const INTERACT_DISTANCE : float = 5.0
 
+@export var array : Array
+
+@onready var hud = get_tree().root.get_node("Main/HUD") # adjust path
+@onready var ray = $Camera/RayCast
 var IsMouseCaptured: bool = false
 var mouse_sensitivity : float = 0.002
+var AmmoArray = {
+		Constants.AmmoType.AssaultRifle : 0,
+		Constants.AmmoType.SniperRifle : 0,
+		Constants.AmmoType.Launcher : 0,
+		Constants.AmmoType.Pistol : 0,
+		Constants.AmmoType.ShotGun : 0,
+		Constants.AmmoType.SubMachineGun : 0
+}
+var MoneyAmount : int = 0
 
 func _ready() -> void:
 	CaptureMouse()
@@ -24,6 +34,14 @@ func _input(event : InputEvent) -> void:
 	
 	if event.is_action_pressed("Interact"):
 		Interact()
+	if event.is_action_pressed("GenerateGun"):
+		GenerateGun()
+	if event.is_action_pressed("GenerateAmmo"):
+		GenerateAmmo()
+	if event.is_action_pressed("GenerateMoney"):
+		GenerateMoney()
+	if event.is_action_pressed("ReloadScene"):
+		ReloadScene()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -62,8 +80,30 @@ func Interact() -> void:
 	if ray.is_colliding():
 		var obj : Node3D = ray.get_collider()
 		if obj and obj.has_method("Open"):
-			# only if within distance
-			if global_position.distance_to(obj.global_position) <= INTERACT_DISTANCE:
-				obj.Open()
+			obj.Open()
+
+func PickupAmmo(type: Constants.AmmoType, amount: int) -> void:
+	AmmoArray[type] += amount
+
+func PickupMoney(amount: int, pickup_pos: Vector3) -> void:
+	MoneyAmount += amount
+	hud.SpawnMoneyUpdate(amount, pickup_pos, $Camera)
+
+
+func GenerateGun() -> void:
+	pass
+
+func GenerateMoney() -> void:
+	var node = Constants.MoneyScene.instantiate()
+	get_tree().get_root().add_child(node)
+
+func GenerateAmmo() -> void:
+	var ammo : Node = Constants.GetRandomItemFromArray(Constants.AmmoScenes)
+	if (ammo == null):
+		return
+	get_tree().get_root().add_child(ammo)
+
+func ReloadScene() -> void:
+	get_tree().reload_current_scene()
 
 #endregion

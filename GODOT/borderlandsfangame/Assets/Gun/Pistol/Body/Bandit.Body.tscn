@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy3cdg6pkrax8"]
+
+[ext_resource type="PackedScene" uid="uid://bbpdfbtrm7arb" path="res://Assets/Import/Gun/Pistol/Body/Body_Bandit.glb" id="1_lg75x"]
+
+[node name="Pistol" instance=ExtResource("1_lg75x")]
+
+[node name="BarrelPlace" type="Node3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.388173)
+
+[node name="SightPlace" type="Node3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.174271, 0)
+
+[node name="GripPlace" type="Node3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.171998, -0.191698)

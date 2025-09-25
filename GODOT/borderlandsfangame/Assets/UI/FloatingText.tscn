@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddu2soxw8be66"]
+
+[ext_resource type="Script" path="res://Scripts/FloatingText.gd" id="1_wpo3e"]
+
+[node name="Labels" type="Label"]
+offset_left = 1006.0
+offset_top = 429.0
+offset_right = 1133.0
+offset_bottom = 479.0
+script = ExtResource("1_wpo3e")

@@ -1,58 +1,89 @@
-[gd_scene load_steps=8 format=3 uid="uid://j4sxg0k825tl"]
+[gd_scene load_steps=16 format=3 uid="uid://j4sxg0k825tl"]
 
 [ext_resource type="PackedScene" uid="uid://bg1ffshikmiar" path="res://Assets/Player/Player.tscn" id="1_od0je"]
+[ext_resource type="PackedScene" uid="uid://dotn4nba1o3kl" path="res://Assets/Consumables/AssaultRifleAmmo.tscn" id="2_2omyx"]
+[ext_resource type="PackedScene" uid="uid://tpjx8ubt16rg" path="res://Assets/Consumables/LauncherAmmo.tscn" id="3_6hphm"]
+[ext_resource type="PackedScene" uid="uid://cjlrhmrqcjscq" path="res://Assets/Environment/Chests/DahlAmmobox.tscn" id="3_67gt3"]
 [ext_resource type="Texture2D" uid="uid://b5fm6w04ves33" path="res://Assets/Import/Crosshair.png" id="3_stdeo"]
 [ext_resource type="PackedScene" uid="uid://cfn83g66558xy" path="res://Assets/Environment/Chests/RedChest.tscn" id="3_tco2t"]
 [ext_resource type="PackedScene" uid="uid://caukasg2at5qv" path="res://Assets/Environment/Chests/Safe.tscn" id="4_6vlxm"]
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="4_mcmae"]
+[ext_resource type="Script" path="res://Scripts/GunManager.gd" id="9_7l8dq"]
+[ext_resource type="PackedScene" uid="uid://cy3cdg6pkrax8" path="res://Assets/Gun/Pistol/Body/Bandit.Body.tscn" id="10_igiwq"]
+[ext_resource type="PackedScene" uid="uid://cxleqqupgkg1p" path="res://Assets/Gun/Pistol/Barrel/Bandit.Barrel.tscn" id="11_myr8o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bblbc"]
 size = Vector3(2.00928, 0.00903702, 2.00757)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iq37i"]
-albedo_color = Color(0, 0.458364, 0, 1)
+albedo_color = Color(0.189589, 0.332369, 0.117411, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pndht"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="Environment" id="Environment_3gbkl"]
+background_mode = 1
+background_color = Color(0.32577, 0.625857, 0.74131, 1)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="Main" type="Node3D"]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.924307, 0.251545, -0.287024, -0.033701, 0.802916, 0.59514, 0.38016, -0.540418, 0.750617, 0, 0, 0)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_od0je")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.963578, 6.31334)
+array = [ExtResource("2_2omyx"), ExtResource("3_6hphm")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="Collision" type="CollisionShape3D" parent="Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00170898, 0.000162125, -0.00158691)
 shape = SubResource("BoxShape3D_bblbc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="Mesh" type="MeshInstance3D" parent="Ground"]
 material_override = SubResource("StandardMaterial3D_iq37i")
 mesh = SubResource("PlaneMesh_pndht")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("4_mcmae")
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+[node name="CenterContainer" type="CenterContainer" parent="HUD"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/CenterContainer"]
+[node name="CrosshairSprite" type="Sprite2D" parent="HUD/CenterContainer"]
 texture = ExtResource("3_stdeo")
+centered = false
 
-[node name="root" parent="." instance=ExtResource("3_tco2t")]
-transform = Transform3D(0.653995, 0, 0, 0, 0.653995, 0, 0, 0, 0.653995, 2.28633, 0.654458, -1.84891)
+[node name="FloatingNumbers" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="root2" parent="." instance=ExtResource("4_6vlxm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0537888, 0.415746, 0.335257)
+[node name="DahlAmmobox" parent="." instance=ExtResource("3_67gt3")]
+transform = Transform3D(0.0496865, 0, -0.998765, 0, 1, 0, 0.998765, 0, 0.0496865, -3.78549, 0.349862, -3.65349)
+
+[node name="RedChest" parent="." instance=ExtResource("3_tco2t")]
+transform = Transform3D(0.653995, 0, 0, 0, 0.653995, 0, 0, 0, 0.653995, 0.766881, 0.661834, -3.93414)
+
+[node name="AmmoSafe" parent="." instance=ExtResource("4_6vlxm")]
+transform = Transform3D(-0.0546365, 0, -0.998506, 0, 1, 0, 0.998506, 0, -0.0546365, -1.45401, 0.230397, -3.69933)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3gbkl")
+
+[node name="GunManager" type="Node3D" parent="."]
+script = ExtResource("9_7l8dq")
+BodyParts = [ExtResource("10_igiwq")]
+BarrelParts = [ExtResource("11_myr8o")]

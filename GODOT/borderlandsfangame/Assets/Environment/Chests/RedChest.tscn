@@ -6,12 +6,12 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_7vsgy"]
 size = Vector3(1.42383, 5.00192, 2.0321)
 
-[node name="root" instance=ExtResource("1_ghsl7")]
+[node name="RedChest" instance=ExtResource("1_ghsl7")]
 transform = Transform3D(0.653995, 0, 0, 0, 0.653995, 0, 0, 0, 0.653995, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+[node name="Body" type="StaticBody3D" parent="." index="2"]
 script = ExtResource("2_3atnf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="Collision" type="CollisionShape3D" parent="Body" index="0"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1.50961, -0.278794, -0.0205688)
 shape = SubResource("BoxShape3D_7vsgy")

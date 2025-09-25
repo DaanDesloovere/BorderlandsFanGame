@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://j4sxg0k825tl"]
+
+[ext_resource type="PackedScene" uid="uid://bg1ffshikmiar" path="res://Assets/Player/Player.tscn" id="1_od0je"]
+[ext_resource type="PackedScene" uid="uid://cjlrhmrqcjscq" path="res://Assets/Environment/Chests/DahlAmmobox.tscn" id="3_67gt3"]
+[ext_resource type="Texture2D" uid="uid://b5fm6w04ves33" path="res://Assets/Import/Crosshair.png" id="3_stdeo"]
+[ext_resource type="PackedScene" uid="uid://cfn83g66558xy" path="res://Assets/Environment/Chests/RedChest.tscn" id="3_tco2t"]
+[ext_resource type="PackedScene" uid="uid://caukasg2at5qv" path="res://Assets/Environment/Chests/Safe.tscn" id="4_6vlxm"]
+[ext_resource type="PackedScene" uid="uid://dotn4nba1o3kl" path="res://Assets/Gun/Ammo/ARAmmo.tscn" id="6_ywyw1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bblbc"]
+size = Vector3(2.00928, 0.00903702, 2.00757)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iq37i"]
+albedo_color = Color(0.189589, 0.332369, 0.117411, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pndht"]
+
+[sub_resource type="Environment" id="Environment_3gbkl"]
+background_mode = 1
+background_color = Color(0.32577, 0.625857, 0.74131, 1)
+
+[node name="Root" type="Node3D"]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.924307, 0.251545, -0.287024, -0.033701, 0.802916, 0.59514, 0.38016, -0.540418, 0.750617, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_od0je")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.963578, 6.31334)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00170898, 0.000162125, -0.00158691)
+shape = SubResource("BoxShape3D_bblbc")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground"]
+material_override = SubResource("StandardMaterial3D_iq37i")
+mesh = SubResource("PlaneMesh_pndht")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CrosshairSprite" type="Sprite2D" parent="CanvasLayer/CenterContainer"]
+texture = ExtResource("3_stdeo")
+centered = false
+
+[node name="DahlAmmobox" parent="." instance=ExtResource("3_67gt3")]
+transform = Transform3D(0.0496865, 0, -0.998765, 0, 1, 0, 0.998765, 0, 0.0496865, -3.78549, 0.349862, -3.65349)
+
+[node name="RedChest" parent="." instance=ExtResource("3_tco2t")]
+transform = Transform3D(0.653995, 0, 0, 0, 0.653995, 0, 0, 0, 0.653995, 0.766881, 0.661834, -3.93414)
+
+[node name="AmmoSafe" parent="." instance=ExtResource("4_6vlxm")]
+transform = Transform3D(-0.0546365, 0, -0.998506, 0, 1, 0, 0.998506, 0, -0.0546365, -1.45401, 0.230397, -3.69933)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3gbkl")
+
+[node name="AssaultRifleAmmo" parent="." instance=ExtResource("6_ywyw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0819159, 0.0468063, 0.108653)

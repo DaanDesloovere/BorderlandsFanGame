@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca63f4rd07itn"]
+
+[ext_resource type="PackedScene" uid="uid://22kr80no6wrr" path="res://Assets/Import/Money.glb" id="1_yfkb4"]
+[ext_resource type="Script" path="res://Scripts/Money.gd" id="2_5j6rr"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xxnt5"]
+radius = 5.0
+
+[node name="Money" instance=ExtResource("1_yfkb4")]
+
+[node name="Area3D" type="Area3D" parent="." index="1"]
+script = ExtResource("2_5j6rr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.991393, 0)
+shape = SubResource("CylinderShape3D_xxnt5")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

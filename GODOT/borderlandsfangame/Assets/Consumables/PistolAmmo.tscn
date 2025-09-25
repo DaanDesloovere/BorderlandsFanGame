@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://calntqh2751cf"]
+
+[ext_resource type="PackedScene" uid="uid://rr8vio1lt50x" path="res://Assets/Import/Gun/Ammo/PistolAmmo.glb" id="1_3uedw"]
+[ext_resource type="Script" path="res://Scripts/Ammo.gd" id="2_7oodr"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nacol"]
+radius = 5.0
+
+[node name="PistolAmmo" instance=ExtResource("1_3uedw")]
+
+[node name="PistolAmmo" parent="." index="0"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="." index="1"]
+script = ExtResource("2_7oodr")
+amount = 12
+type = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.965, 0)
+shape = SubResource("CylinderShape3D_nacol")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
