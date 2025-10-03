@@ -72,13 +72,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="DahlAmmobox" parent="." instance=ExtResource("3_67gt3")]
-transform = Transform3D(0.0496865, 0, -0.998765, 0, 1, 0, 0.998765, 0, 0.0496865, -3.78549, 0.349862, -3.65349)
+transform = Transform3D(0.0496865, 0, -0.998765, 0, 1, 0, 0.998765, 0, 0.0496865, -4.10597, 0.349862, -3.65349)
 
 [node name="RedChest" parent="." instance=ExtResource("3_tco2t")]
 transform = Transform3D(0.653995, 0, 0, 0, 0.653995, 0, 0, 0, 0.653995, 0.766881, 0.661834, -3.93414)
 
 [node name="AmmoSafe" parent="." instance=ExtResource("4_6vlxm")]
-transform = Transform3D(-0.0546365, 0, -0.998506, 0, 1, 0, 0.998506, 0, -0.0546365, -1.45401, 0.230397, -3.69933)
+transform = Transform3D(-0.0546365, 0, -0.998506, 0, 1, 0, 0.998506, 0, -0.0546365, 4.63007, 0.230397, -3.69933)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3gbkl")
@@ -87,3 +87,9 @@ environment = SubResource("Environment_3gbkl")
 script = ExtResource("9_7l8dq")
 BodyParts = [ExtResource("10_igiwq")]
 BarrelParts = [ExtResource("11_myr8o")]
+
+[node name="DahlAmmobox2" parent="." instance=ExtResource("3_67gt3")]
+transform = Transform3D(0.708906, 0, -0.705303, 0, 1, 0, 0.705303, 0, 0.708906, -6.33343, 0.338678, -2.66275)
+
+[node name="DahlAmmobox3" parent="." instance=ExtResource("3_67gt3")]
+transform = Transform3D(-0.770969, 0, -0.636872, 0, 1, 0, 0.636872, 0, -0.770969, -1.84174, 0.234032, -2.67487)

@@ -10,13 +10,23 @@ const JUMP_VELOCITY : float = 4.5
 var IsMouseCaptured: bool = false
 var mouse_sensitivity : float = 0.002
 var AmmoArray = {
-		Constants.AmmoType.AssaultRifle : 0,
-		Constants.AmmoType.SniperRifle : 0,
-		Constants.AmmoType.Launcher : 0,
-		Constants.AmmoType.Pistol : 0,
-		Constants.AmmoType.ShotGun : 0,
-		Constants.AmmoType.SubMachineGun : 0
+	Constants.AmmoType.AssaultRifle : 0,
+	Constants.AmmoType.SniperRifle : 0,
+	Constants.AmmoType.Launcher : 0,
+	Constants.AmmoType.Pistol : 0,
+	Constants.AmmoType.ShotGun : 0,
+	Constants.AmmoType.SubMachineGun : 0
 }
+
+var MaxAmmoArray = {
+	Constants.AmmoType.AssaultRifle : 6,
+	Constants.AmmoType.SniperRifle : 6,
+	Constants.AmmoType.Launcher : 6,
+	Constants.AmmoType.Pistol : 6,
+	Constants.AmmoType.ShotGun : 6,
+	Constants.AmmoType.SubMachineGun : 6
+}
+
 var MoneyAmount : int = 0
 
 func _ready() -> void:
@@ -44,6 +54,8 @@ func _input(event : InputEvent) -> void:
 		ReloadScene()
 
 func _physics_process(delta: float) -> void:
+	hud.ProcessQueue($Camera)
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -84,10 +96,11 @@ func Interact() -> void:
 
 func PickupAmmo(type: Constants.AmmoType, amount: int) -> void:
 	AmmoArray[type] += amount
+	hud.AddToQueue(Constants.HudPickupType.Ammo, str(amount))
 
-func PickupMoney(amount: int, pickup_pos: Vector3) -> void:
+func PickupMoney(amount: int) -> void:
 	MoneyAmount += amount
-	hud.SpawnMoneyUpdate(amount, pickup_pos, $Camera)
+	hud.AddToQueue(Constants.HudPickupType.Money, str(amount))
 
 
 func GenerateGun() -> void:

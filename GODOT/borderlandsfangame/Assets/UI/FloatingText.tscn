@@ -2,9 +2,22 @@
 
 [ext_resource type="Script" path="res://Scripts/FloatingText.gd" id="1_wpo3e"]
 
-[node name="Labels" type="Label"]
-offset_left = 1006.0
-offset_top = 429.0
-offset_right = 1133.0
-offset_bottom = 479.0
+[node name="ColorRect" type="ColorRect"]
+offset_right = 200.0
+offset_bottom = 40.0
+color = Color(0.385493, 0.385492, 0.385492, 1)
 script = ExtResource("1_wpo3e")
+
+[node name="Labels" type="Label" parent="."]
+offset_top = 8.0
+offset_right = 1.0
+offset_bottom = 31.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 203.0
+offset_bottom = 43.0
+color = Color(0.0885599, 0.0885599, 0.0885599, 1)

@@ -8,7 +8,7 @@ var PickedUp := false
 var Player : Node3D
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.is_in_group("Player") and not PickedUp:
+	if body.is_in_group("Player") and not PickedUp and body.AmmoArray[type] < body.MaxAmmoArray[type]:
 		PickedUp = true
 		Player = body
 		await get_tree().create_timer(1.5).timeout 

@@ -20,5 +20,5 @@ func _on_body_entered(body: Node3D) -> void:
 
 func _finish_pickup():
 	if Player:
-		Player.PickupMoney(amount, global_transform.origin)
+		Player.PickupMoney(amount)
 	Money.queue_free()

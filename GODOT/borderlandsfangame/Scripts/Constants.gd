@@ -9,6 +9,21 @@ enum AmmoType {
 	Pistol=5
 }
 
+enum HudPickupType {
+	Gun=0,
+	Money=1,
+	Ammo=2
+}
+
+enum GunType {
+	AssaultRifle=0,
+	SubMachineGun=1,
+	ShotGun=2,
+	SniperRifle=3,
+	Launcher=4,
+	Pistol=5
+}
+
 const AmmoScenes : Array[PackedScene] = [
 	preload("res://Assets/Consumables/AssaultRifleAmmo.tscn"),
 	preload("res://Assets/Consumables/LauncherAmmo.tscn"),
